@@ -8,7 +8,10 @@ function peco_select_ghq_repository
   ghq list | peco $peco_flags | read line
 
   if [ $line ]
-    ghq look $line
+    # ghq look $line
+    set root (ghq root)
+    set directory (string join / $root $line) 
+    cd $directory
     commandline -f repaint
   end
 end
